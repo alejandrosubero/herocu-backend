@@ -27,7 +27,7 @@ public class NotaController {
 	
 	@GetMapping("/nota/{id}")
 	public String publicarNota(@PathVariable("id")Long id) throws NotalecturaOrIdFound {
-		String notas = notaService.getNotaById(id).getLectura() + " version 1.0";
+		String notas = notaService.getNotaById(id).getLectura();
 		return notas;
 	}
 	
