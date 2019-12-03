@@ -50,6 +50,7 @@ public class NotaServiceImpl implements NotaService {
 	
 	protected void mapNota(Nota notaUse, Nota to) {
 		to.setId(notaUse.getId());
+		to.setTitulo(notaUse.getTitulo());
 		to.setLectura(notaUse.getLectura());
 	}
 	
