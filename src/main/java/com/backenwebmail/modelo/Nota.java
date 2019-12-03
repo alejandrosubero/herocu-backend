@@ -26,19 +26,21 @@ public class Nota implements Serializable {
 	
 	@Column
 	@NonNull
+	private String titulo;
+	
+	@Column
+	@NonNull
 	private String lectura;
 
-	
-	
-	
+
 	public Nota() {
 		super();
 	}
 	
-	
-	public Nota(Long id, String lectura) {
+	public Nota(Long id, String titulo, String lectura) {
 		super();
 		this.id = id;
+		this.titulo = titulo;
 		this.lectura = lectura;
 	}
 
@@ -48,6 +50,14 @@ public class Nota implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getLectura() {
@@ -64,6 +74,7 @@ public class Nota implements Serializable {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lectura == null) ? 0 : lectura.hashCode());
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		return result;
 	}
 
@@ -86,14 +97,21 @@ public class Nota implements Serializable {
 				return false;
 		} else if (!lectura.equals(other.lectura))
 			return false;
+		if (titulo == null) {
+			if (other.titulo != null)
+				return false;
+		} else if (!titulo.equals(other.titulo))
+			return false;
 		return true;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Nota [id=" + id + ", lectura=" + lectura + "]";
+		return "Nota [id=" + id + ", titulo=" + titulo + ", lectura=" + lectura + "]";
 	}
 
+	
 	
 	
 	
