@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backenwebmail.modelo.Emailcfg;
 import com.backenwebmail.modelo.Feedback;
+//@CrossOrigin(origins = "https://annitawebss.000webhostapp.com")
 
 @RestController
-@CrossOrigin(origins = "https://annitawebss.000webhostapp.com")
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*")
 @RequestMapping("/feedback")
 public class FeebadbackController {
 
