@@ -27,18 +27,21 @@ public class NotaController {
 	
 	@GetMapping("/nota/{id}")
 	public Nota publicarNota(@PathVariable("id")Long id) throws NotalecturaOrIdFound {
-		
 		Nota notas = notaService.getNotaById(id);
-		
 		return notas;
 	}
 	
 	@PostMapping("/editNota")
 	public Nota postEditNota(@RequestBody Nota nota, BindingResult result ) throws NotalecturaOrIdFound {
-		Nota nota1 = nota;
-		notaService.updateNota(nota);
-		return nota1;
+		return notaService.updateNota(nota);
 	}
+	
+	
+	@PostMapping("/salveNota")
+	public boolean postSaveNota(@RequestBody Nota nota, BindingResult result ) throws NotalecturaOrIdFound {
+		return notaService.createNota(nota);
+	}
+	
 
 	
 }

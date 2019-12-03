@@ -6,11 +6,11 @@ import com.backenwebmail.modelo.Nota;
 public interface NotaService {
 
 	
-	public void createNota(Nota nota); 
+	public boolean createNota(Nota nota); 
 	
 	public Nota getNotaById(Long id) throws NotalecturaOrIdFound;
 	
-	public String updateNota(Nota nota) throws NotalecturaOrIdFound;//actualiza nota y envia nota para ser publicada
+	public Nota updateNota(Nota nota) throws NotalecturaOrIdFound;//actualiza nota y envia nota para ser publicada
 	
 	
 	

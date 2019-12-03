@@ -18,8 +18,13 @@ public class NotaServiceImpl implements NotaService {
 	
 	
 	@Override
-	public void createNota(Nota nota) {
-		//crea las tablas manualmente en la base de datos
+	public boolean createNota(Nota nota) {
+		try {
+			notaRepository.save(nota);
+			return true;
+		} catch (Exception e) {
+			return false;	
+		}
 	}
 
 	
@@ -33,13 +38,12 @@ public class NotaServiceImpl implements NotaService {
 	
 
 	@Override
-	public String updateNota(Nota nota) throws NotalecturaOrIdFound {
+	public Nota updateNota(Nota nota) throws NotalecturaOrIdFound {
 		
 		Nota toNota = getNotaById(nota.getId());
 		mapNota(nota, toNota);
 		notaRepository.save(toNota);
-		
-		return toNota.getLectura();
+		return toNota;
 	}
 	
 
