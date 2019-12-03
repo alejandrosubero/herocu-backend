@@ -34,8 +34,11 @@ public class NotaController {
 	}
 	
 	@PostMapping("/editNota")
-	public String postEditNota(@RequestBody Nota nota, BindingResult result ) throws NotalecturaOrIdFound {
-		return notaService.updateNota(nota);
+	public Nota postEditNota(@RequestBody Nota nota, BindingResult result ) throws NotalecturaOrIdFound {
+		Nota nota1 = nota;
+		notaService.updateNota(nota);
+		return nota1;
 	}
+
 	
 }
