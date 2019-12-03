@@ -30,4 +30,16 @@ public class UserServiceImpl implements UserService {
 		}
 		return valor;
 	}
+
+
+	@Override
+	public boolean createUser(User user) throws Exception {
+		try {
+			userRepository.save(user);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
+	}
 }

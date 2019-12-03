@@ -11,7 +11,7 @@ public interface UserService {
 	public boolean valitUser(User user);
 	
 	
-	//public User createUser(User user) throws Exception;	 
+	public boolean createUser(User user) throws Exception;	 
 	
 	//public User getUserById(Long id) throws Exception;
 

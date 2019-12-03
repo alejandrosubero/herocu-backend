@@ -24,15 +24,21 @@ public class UserController {
 	
 	
 	@PostMapping("/sigin")
-	public String siginAction(@RequestBody User user, BindingResult result) {
+	public int siginAction(@RequestBody User user, BindingResult result) {
 		
 		if (userService.valitUser(user)) {
-			return "25867025867";
+			return 258670258;
 		}else {
-		return "0000000";
+		return 0000000;
 		}
-		
 	}
+	
+	@PostMapping("/ingres")
+	public boolean createuser(@RequestBody User user, BindingResult result) throws Exception {
+		return userService.createUser(user);
+	}
+	
+	//contenido nuevo
 	
 	
 	
