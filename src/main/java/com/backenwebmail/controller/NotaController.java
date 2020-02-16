@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backenwebmail.execiones.NotalecturaOrIdFound;
-import com.backenwebmail.modelo.Nota;
+import com.backenwebmail.modelo.entity.Nota;
 import com.backenwebmail.service.NotaService;
 
 

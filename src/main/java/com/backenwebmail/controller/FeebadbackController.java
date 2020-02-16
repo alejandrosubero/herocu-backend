@@ -1,6 +1,14 @@
 package com.backenwebmail.controller;
 
-import java.util.Properties;
+import com.backenwebmail.modelo.Correo;
+import com.backenwebmail.modelo.CuerpoDeCorreo;
+import com.backenwebmail.modelo.Emailcfg;
+import com.backenwebmail.modelo.Feedback;
+import com.backenwebmail.service.CorreosServices;
+import com.backenwebmail.service.EnvioEmailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -9,20 +17,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.validation.ValidationException;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.backenwebmail.modelo.Emailcfg;
-import com.backenwebmail.modelo.Feedback;
+import java.util.Properties;
 //@CrossOrigin(origins = "https://annitawebss.000webhostapp.com")
 
 @RestController
@@ -30,99 +25,142 @@ import com.backenwebmail.modelo.Feedback;
 @RequestMapping("/feedback")
 public class FeebadbackController {
 
-	private Emailcfg emailcfg;
 
-	
+    private Emailcfg emailcfg;
 
-	public FeebadbackController(Emailcfg emailcfg) {
+    @Autowired(required = true)
+    private EnvioEmailService envioEmailService;
 
-		this.emailcfg = emailcfg;
-	}
+    @Autowired
+    private CorreosServices CorreosServices;
 
-	@PostMapping("/lig")
-	public void sendFeeback(@RequestBody Feedback feedback, BindingResult bindingResult) {
 
-		if (feedback.getToken().equals("")) {
+    @PostMapping("/MuchosCorreos")
+    public int sendEmailAMuchos(@RequestBody CuerpoDeCorreo body) {
 
-			if (bindingResult.hasErrors()) {
-				throw new ValidationException("Feedback in not valid");
-			}
+        try {
+            return envioEmailService.sendEmails(CorreosServices.getListacorreos(body.getCategoria()),body);
 
-			Properties props = System.getProperties();
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println(body);
+            return 0;
+        }
+    }
 
-			props.put("mail.smtp.host", this.emailcfg.getHost());
-			props.put("mail.smtp.user", this.emailcfg.getUsername());
-			props.put("mail.smtp.auth", "true");
-			props.put("mail.smtp.starttls.enable", "true");
-			props.put("mail.smtp.port", this.emailcfg.getPort());
 
-			Session session = Session.getDefaultInstance(props);
+    @PostMapping("/correos")
+    public boolean sendEmail1(@RequestBody Correo correo, BindingResult bindingResult) {
 
-			MimeMessage message = new MimeMessage(session);
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException("Feedback in not valid");
+        }
 
-			try {
-				message.setFrom(new InternetAddress(this.emailcfg.getUsername()));
-				message.addRecipient(Message.RecipientType.TO, new InternetAddress("alejandrosubero.ar@gmail.com"));
-				message.setSubject("new feedback from " + feedback.getName());
-				message.setText("el nombre de la persona que contacta: " + feedback.getName() + "\nCorreo = "
-						+ feedback.getEmail() + "\n" + feedback.getFeedback());
+        try {
+            envioEmailService.sendMail(correo);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println(correo);
+            return false;
+        }
+    }
 
-				Transport transport = session.getTransport("smtp");
-				transport.connect(this.emailcfg.getHost(), this.emailcfg.getUsername(), this.emailcfg.getPassword());
-				transport.sendMessage(message, message.getAllRecipients());
-				transport.close();
-			} catch (MessagingException me) {
-				me.printStackTrace();
-			}
 
+	@PostMapping("/correosRapidos")
+	public boolean sendEmailRapido(@RequestBody String cuerpo) {
+		try {
+			envioEmailService.sendPreConfiguredMail(cuerpo);
+			return true;
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
 		}
 
 	}
 
-	
-	
-	@PostMapping("/ligeros")
-	public boolean sendFeebacks(@RequestBody Feedback feedback, BindingResult bindingResult) {
 
-		boolean valor = false;
+    public FeebadbackController(Emailcfg emailcfg) {
+        this.emailcfg = emailcfg;
+    }
+    @PostMapping("/lig")
+    public void sendFeeback(@RequestBody Feedback feedback, BindingResult bindingResult) {
 
-		//if (feedback.getToken()=="1234567891011121314151689719"){
+        if (feedback.getToken().equals("")) {
+            if (bindingResult.hasErrors()) {
+                throw new ValidationException("Feedback in not valid");
+            }
 
-			if (bindingResult.hasErrors()) {
-				throw new ValidationException("Feedback in not valid");
-			}
+            Properties props = System.getProperties();
 
-			Properties props = System.getProperties();
+            props.put("mail.smtp.host", this.emailcfg.getHost());
+            props.put("mail.smtp.user", this.emailcfg.getUsername());
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.port", this.emailcfg.getPort());
 
-			props.put("mail.smtp.host", this.emailcfg.getHost());
-			props.put("mail.smtp.user", this.emailcfg.getUsername());
-			props.put("mail.smtp.auth", "true");
-			props.put("mail.smtp.starttls.enable", "true");
-			props.put("mail.smtp.port", this.emailcfg.getPort());
+            Session session = Session.getDefaultInstance(props);
 
-			Session session = Session.getDefaultInstance(props);
+            MimeMessage message = new MimeMessage(session);
 
-			MimeMessage message = new MimeMessage(session);
+            try {
+                message.setFrom(new InternetAddress(this.emailcfg.getUsername()));
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress("alejandrosubero.ar@gmail.com"));
+                message.setSubject("new feedback from " + feedback.getName());
+                message.setText("el nombre de la persona que contacta: " + feedback.getName() + "\nCorreo = "
+                        + feedback.getEmail() + "\n" + feedback.getFeedback());
 
-			try {
-				message.setFrom(new InternetAddress(this.emailcfg.getUsername()));
-				message.addRecipient(Message.RecipientType.TO, new InternetAddress("alejandrosubero@hotmail.com"));
-				message.setSubject("new feedback from " + feedback.getName());
-				message.setText("el nombre de la persona que contacta: " + feedback.getName() + "\nCorreo = "
-						+ feedback.getEmail() + "\n" + feedback.getFeedback());
+                Transport transport = session.getTransport("smtp");
+                transport.connect(this.emailcfg.getHost(), this.emailcfg.getUsername(), this.emailcfg.getPassword());
+                transport.sendMessage(message, message.getAllRecipients());
+                transport.close();
+            } catch (MessagingException me) {
+                me.printStackTrace();
+            }
 
-				Transport transport = session.getTransport("smtp");
-				transport.connect(this.emailcfg.getHost(), this.emailcfg.getUsername(), this.emailcfg.getPassword());
-				transport.sendMessage(message, message.getAllRecipients());
-				transport.close();
-				valor = true;
-			} catch (MessagingException me) {
-				me.printStackTrace();
-			}
+        }
 
-		//}
-		return valor;
+    }
 
-	}
+
+    @PostMapping("/ligeros")
+    public boolean sendFeebacks(@RequestBody Feedback feedback, BindingResult bindingResult) {
+
+        boolean valor = false;
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException("Feedback in not valid");
+        }
+
+        Properties props = System.getProperties();
+
+        props.put("mail.smtp.host", this.emailcfg.getHost());
+        props.put("mail.smtp.user", this.emailcfg.getUsername());
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.port", this.emailcfg.getPort());
+
+        Session session = Session.getDefaultInstance(props);
+
+        MimeMessage message = new MimeMessage(session);
+
+        try {
+            message.setFrom(new InternetAddress(this.emailcfg.getUsername()));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress("alejandrosubero@hotmail.com"));
+            message.setSubject("new feedback from " + feedback.getName());
+            message.setText("el nombre de la persona que contacta: " + feedback.getName() + "\nCorreo = "
+                    + feedback.getEmail() + "\n" + feedback.getFeedback());
+
+            Transport transport = session.getTransport("smtp");
+            transport.connect(this.emailcfg.getHost(), this.emailcfg.getUsername(), this.emailcfg.getPassword());
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+            valor = true;
+        } catch (MessagingException me) {
+            me.printStackTrace();
+        }
+        return valor;
+
+    }
 
 }

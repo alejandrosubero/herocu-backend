@@ -3,7 +3,7 @@ package com.backenwebmail.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backenwebmail.modelo.User;
+import com.backenwebmail.modelo.entity.User;
 import com.backenwebmail.repository.UserRepository;
 import com.backenwebmail.service.UserService;
 

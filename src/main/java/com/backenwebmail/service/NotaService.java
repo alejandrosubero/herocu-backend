@@ -1,7 +1,7 @@
 package com.backenwebmail.service;
 
 import com.backenwebmail.execiones.NotalecturaOrIdFound;
-import com.backenwebmail.modelo.Nota;
+import com.backenwebmail.modelo.entity.Nota;
 
 public interface NotaService {
 

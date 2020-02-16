@@ -1,7 +1,6 @@
 package com.backenwebmail.service;
 
-import com.backenwebmail.execiones.UsernameOrIdNotFound;
-import com.backenwebmail.modelo.User;
+import com.backenwebmail.modelo.entity.User;
 
 
 public interface UserService {

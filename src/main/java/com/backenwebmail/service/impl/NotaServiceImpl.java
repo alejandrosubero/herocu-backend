@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backenwebmail.execiones.NotalecturaOrIdFound;
-import com.backenwebmail.modelo.Nota;
+import com.backenwebmail.modelo.entity.Nota;
 import com.backenwebmail.repository.NotaRepository;
 import com.backenwebmail.service.NotaService;
 
@@ -28,10 +28,10 @@ public class NotaServiceImpl implements NotaService {
 	}
 
 	
-	
 	@Override
 	public Nota getNotaById(Long id) throws NotalecturaOrIdFound  {
 			Nota nota = notaRepository.findById(id).orElseThrow(() -> new NotalecturaOrIdFound("no existe el id"));
+	
 		return nota;
 	}
 	
