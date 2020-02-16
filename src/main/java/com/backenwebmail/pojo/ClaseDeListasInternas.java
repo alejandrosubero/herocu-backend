@@ -1,4 +1,4 @@
-package com.backenwebmail.modelo.pojo;
+package com.backenwebmail.pojo;
 
 import org.springframework.stereotype.Component;
 

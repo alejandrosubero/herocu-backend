@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backenwebmail.modelo.entity.User;
+import com.backenwebmail.entity.User;
 import com.backenwebmail.service.UserService;
 
 

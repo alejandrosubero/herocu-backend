@@ -1,4 +1,4 @@
-package com.backenwebmail.modelo.entity;
+package com.backenwebmail.entity;
 
 import java.io.Serializable;
 

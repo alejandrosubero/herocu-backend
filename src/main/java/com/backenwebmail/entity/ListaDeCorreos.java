@@ -1,9 +1,8 @@
-package com.backenwebmail.modelo.entity;
+package com.backenwebmail.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity

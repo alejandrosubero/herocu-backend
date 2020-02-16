@@ -1,10 +1,10 @@
-package com.backenwebmail.service.impl;
+package com.backenwebmail.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backenwebmail.execiones.NotalecturaOrIdFound;
-import com.backenwebmail.modelo.entity.Nota;
+import com.backenwebmail.entity.Nota;
 import com.backenwebmail.repository.NotaRepository;
 import com.backenwebmail.service.NotaService;
 

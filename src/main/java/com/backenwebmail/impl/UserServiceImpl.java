@@ -1,9 +1,9 @@
-package com.backenwebmail.service.impl;
+package com.backenwebmail.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backenwebmail.modelo.entity.User;
+import com.backenwebmail.entity.User;
 import com.backenwebmail.repository.UserRepository;
 import com.backenwebmail.service.UserService;
 

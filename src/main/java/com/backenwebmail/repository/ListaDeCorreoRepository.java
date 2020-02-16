@@ -3,7 +3,7 @@ package com.backenwebmail.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.backenwebmail.modelo.entity.ListaDeCorreos;
+import com.backenwebmail.entity.ListaDeCorreos;
 
 import java.util.Optional;
 

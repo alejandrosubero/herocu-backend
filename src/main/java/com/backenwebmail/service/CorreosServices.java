@@ -1,6 +1,6 @@
 package com.backenwebmail.service;
 
-import com.backenwebmail.modelo.entity.ListaDeCorreos;
+import com.backenwebmail.entity.ListaDeCorreos;
 
 import java.util.List;
 

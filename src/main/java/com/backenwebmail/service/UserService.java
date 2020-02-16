@@ -1,6 +1,6 @@
 package com.backenwebmail.service;
 
-import com.backenwebmail.modelo.entity.User;
+import com.backenwebmail.entity.User;
 
 
 public interface UserService {

@@ -1,7 +1,7 @@
-package com.backenwebmail.service.impl;
+package com.backenwebmail.impl;
 
-import com.backenwebmail.modelo.entity.ListaDeCorreos;
-import com.backenwebmail.modelo.pojo.ClaseDeListasInternas;
+import com.backenwebmail.entity.ListaDeCorreos;
+import com.backenwebmail.pojo.ClaseDeListasInternas;
 import com.backenwebmail.repository.ListaDeCorreoRepository;
 import com.backenwebmail.service.CorreosServices;
 import org.springframework.beans.factory.annotation.Autowired;

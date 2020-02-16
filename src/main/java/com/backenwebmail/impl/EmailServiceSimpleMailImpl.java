@@ -1,8 +1,7 @@
-package com.backenwebmail.service.impl;
+package com.backenwebmail.impl;
 
 import com.backenwebmail.modelo.Correo;
 import com.backenwebmail.modelo.CuerpoDeCorreo;
-import com.backenwebmail.service.CorreosServices;
 import com.backenwebmail.service.EnvioEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
