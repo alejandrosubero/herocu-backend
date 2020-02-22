@@ -1,9 +1,6 @@
 package com.backenwebmail.controller;
 
-import com.backenwebmail.modelo.Correo;
-import com.backenwebmail.modelo.CuerpoDeCorreo;
-import com.backenwebmail.modelo.Emailcfg;
-import com.backenwebmail.modelo.Feedback;
+import com.backenwebmail.modelo.*;
 import com.backenwebmail.service.CorreosServices;
 import com.backenwebmail.service.EnvioEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +30,19 @@ public class FeebadbackController {
 
     @Autowired
     private CorreosServices CorreosServices;
+
+
+    @PostMapping("/adjunto")
+    public CuerpoDeCorreo2 sendEmailAdjuntos(@RequestBody CuerpoDeCorreo2 body) {
+        try {
+            return body;
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println(body);
+            return body = null;
+        }
+    }
+
 
 
     @PostMapping("/MuchosCorreos")

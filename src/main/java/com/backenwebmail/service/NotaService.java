@@ -3,6 +3,8 @@ package com.backenwebmail.service;
 import com.backenwebmail.execiones.NotalecturaOrIdFound;
 import com.backenwebmail.entity.Nota;
 
+import java.util.List;
+
 public interface NotaService {
 
 	
@@ -12,6 +14,6 @@ public interface NotaService {
 	
 	public Nota updateNota(Nota nota) throws NotalecturaOrIdFound;//actualiza nota y envia nota para ser publicada
 	
-	
+	public List<Nota> getNotas();
 	
 }

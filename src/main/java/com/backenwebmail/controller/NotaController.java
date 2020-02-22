@@ -14,17 +14,22 @@ import com.backenwebmail.execiones.NotalecturaOrIdFound;
 import com.backenwebmail.entity.Nota;
 import com.backenwebmail.service.NotaService;
 
+import java.util.List;
+
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/publica")
 public class NotaController {
 
-	
 	@Autowired
 	NotaService notaService;
-	
-	
+
+	@GetMapping("/notas")
+	public List<Nota> publicarNotas() {
+		return notaService.getNotas();
+	}
+
 	@GetMapping("/nota/{id}")
 	public Nota publicarNota(@PathVariable("id")Long id) throws NotalecturaOrIdFound {
 		Nota notas = notaService.getNotaById(id);
