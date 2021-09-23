@@ -2,22 +2,18 @@ package com.backenwebmail.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.lang.NonNull;
 
 @Entity
+@Table(name="NOTA")
 public class Nota implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4506464500499177543L;
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -111,9 +107,6 @@ public class Nota implements Serializable {
 		return "Nota [id=" + id + ", titulo=" + titulo + ", lectura=" + lectura + "]";
 	}
 
-	
-	
-	
-	
+
 	
 }

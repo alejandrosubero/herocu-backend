@@ -2,10 +2,9 @@ package com.backenwebmail.modelo;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class Correo {
 
-	
 	private String to;
 	private String subject;
 	private String content;

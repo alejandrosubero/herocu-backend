@@ -6,7 +6,6 @@ import com.backenwebmail.modelo.Correo;
 import com.backenwebmail.modelo.CuerpoDeCorreo;
 
 public interface EnvioEmailService  {
-
 	public void sendMail(Correo mail);
 	public int sendEmails(List<String> correos, CuerpoDeCorreo cuerpo);
 	public void sendPreConfiguredMail(String message);

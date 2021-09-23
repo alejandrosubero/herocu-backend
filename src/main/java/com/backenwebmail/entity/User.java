@@ -2,59 +2,51 @@ package com.backenwebmail.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name="USER")
 public class User implements Serializable{
-
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 5145128109503024313L;
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 	@GenericGenerator(name = "native", strategy = "native")
 	private Long id;
-	
-	@Column 
-	@Size(min = 4, max = 15)
+
+	@Column(name="FIRSTNAME")
 	private String firstName;
-	
-	@Column 
+
+	@Column(name="LASTNAME")
 	private String lastName;
-	
-	@Column(unique = true) 
+
+	@Column(name="EMAIL")
 	@Email
 	private String email;
-	
-	@Column(unique = true) 
+
+	@Column(name="USER_NAME")
 	private String username;
-	
-	@Column
-	@Size(min = 3, max = 255)
+
+	@Column(name="PASSWORD")
 	private String password;
+
+	@Column(name="ROL")
+	private String rol;
 
 	@Transient
 	private String confirmPassword;
-	
-	
-	
+
 	public User() {
 		super();
 	}
-	
-	
+
 
 	public User(Long id, @Size(min = 4, max = 15) String firstName, String lastName, @Email String email,
 			String username, @Size(min = 3, max = 255) String password, String confirmPassword) {
@@ -68,6 +60,34 @@ public class User implements Serializable{
 		this.confirmPassword = confirmPassword;
 	}
 
+    public User(String firstName, String lastName, String email, String username, String password, String confirmPassword) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
+
+
+    public Boolean isEmpty(){
+		if(this.username != null
+				&& this.password != null
+				&& this.email != null){
+			return false;
+		}
+		return true;
+	}
+
+	public Boolean isGood(){
+		if(this.username != null
+				&& this.password != null
+				&& this.email != null){
+			return true;
+		}
+		return false;
+	}
 
 
 	public Long getId() {
@@ -126,10 +146,27 @@ public class User implements Serializable{
 		this.confirmPassword = confirmPassword;
 	}
 
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", username=" + username + ", password=" + password + ", confirmPassword=" + confirmPassword + "]";
+		return "User{" +
+				"id=" + id +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", email='" + email + '\'' +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", rol='" + rol + '\'' +
+				", confirmPassword='" + confirmPassword + '\'' +
+				'}';
 	}
 
 	@Override
@@ -143,6 +180,8 @@ public class User implements Serializable{
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((rol == null) ? 0 : rol.hashCode());
 		return result;
 	}
 
@@ -190,12 +229,14 @@ public class User implements Serializable{
 				return false;
 		} else if (!username.equals(other.username))
 			return false;
+		if (rol == null) {
+			if (other.rol != null)
+				return false;
+		} else if (!rol.equals(other.rol))
+			return false;
 		return true;
 	}
-	
-	
-	
-	
 
-	
+
+
 }

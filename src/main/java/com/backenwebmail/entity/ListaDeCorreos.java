@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "lista_de_correos")
+@Table(name = "EMAIL_LIST")
 public class ListaDeCorreos implements Serializable {
 
 	private static final long serialVersionUID = -2413863548750816544L;
@@ -16,10 +16,10 @@ public class ListaDeCorreos implements Serializable {
 	@GenericGenerator(name = "native", strategy = "native")
 	private Integer id;
 	
-	@Column(name = "correo")
+	@Column(name = "EMAIL")
 	private String coreo;
 
-	@Column(name = "categoriacorreo")
+	@Column(name = "EMAIL_CATEGORIES")
 	private String categoriaCorreo;
 	
 	

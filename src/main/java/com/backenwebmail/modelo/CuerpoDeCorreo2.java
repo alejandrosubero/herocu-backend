@@ -2,10 +2,8 @@ package com.backenwebmail.modelo;
 
 import org.springframework.stereotype.Component;
 
-@Component
-public class CuerpoDeCorreo2 {
 
-    //esta clase es para extender la funcionabilidad de envio de correos con listas de correos para envio masivo de correos
+public class CuerpoDeCorreo2 {
 
     private String subject;
     private String content;
