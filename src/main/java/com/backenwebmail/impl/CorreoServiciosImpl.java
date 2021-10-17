@@ -1,10 +1,9 @@
 package com.backenwebmail.impl;
 
-import com.backenwebmail.BackenWebMailApplication;
 import com.backenwebmail.entity.User;
 import com.backenwebmail.modelo.Emailcfg;
 import com.backenwebmail.modelo.Feedback;
-import com.backenwebmail.segurity.EncriptadorAES;
+import com.backenwebmail.security.EncriptadorAES;
 import com.backenwebmail.service.CorreosServices;
 import com.backenwebmail.service.UserService;
 import org.apache.commons.logging.Log;
