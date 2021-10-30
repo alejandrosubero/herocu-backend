@@ -39,35 +39,4 @@ public class FeebadbackController {
 
 
 
-//    @PostMapping("/correos")
-//    public boolean sendEmail1(@RequestBody Correo correo, BindingResult bindingResult) {
-//
-//        if (bindingResult.hasErrors()) {
-//            throw new ValidationException("Feedback in not valid");
-//        }
-//        try {
-//            envioEmailService.sendMail(correo);
-//            return true;
-//        } catch (Exception e) {
-//           e.printStackTrace();
-//            return false;
-//        }
-//    }
-
-
-//	@PostMapping("/correosRapidos")
-//	public boolean sendEmailRapido(@RequestBody String cuerpo) {
-//		try {
-//			envioEmailService.sendPreConfiguredMail(cuerpo);
-//			return true;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-//
-//	}
-// @Autowired(required = true)
-//    private EnvioEmailService envioEmailService;
-
-
 }

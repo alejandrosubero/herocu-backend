@@ -40,13 +40,10 @@ public class NotaController {
 	public Nota postEditNota(@RequestBody Nota nota, BindingResult result ) throws NotalecturaOrIdFound {
 		return notaService.updateNota(nota);
 	}
-	
-	
+
 	@PostMapping("/salveNota")
 	public boolean postSaveNota(@RequestBody Nota nota, BindingResult result ) throws NotalecturaOrIdFound {
 		return notaService.createNota(nota);
 	}
-	
 
-	
 }

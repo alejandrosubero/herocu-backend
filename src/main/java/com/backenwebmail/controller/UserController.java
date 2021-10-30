@@ -1,4 +1,4 @@
-package com.backenwebmail.usercontroller;
+package com.backenwebmail.controller;
 
 import com.backenwebmail.entity.Nota;
 import com.backenwebmail.execiones.NotalecturaOrIdFound;

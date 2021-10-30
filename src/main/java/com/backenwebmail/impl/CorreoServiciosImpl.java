@@ -53,7 +53,7 @@ public class CorreoServiciosImpl implements CorreosServices {
         this.emailcfg.setUsername(userAdmin.getEmail());
         this.emailcfg.setPassword(pass);
 
-        logger.info( this.emailcfg.toString());
+       // logger.info( this.emailcfg.toString());
 
         Properties props = System.getProperties();
         props.put("mail.smtp.host", this.emailcfg.getHost());
